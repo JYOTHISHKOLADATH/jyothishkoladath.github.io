@@ -21,21 +21,37 @@
         }
 
         window.onload = function () {
-            checkResourceExists(urlToCheck, function (exists) {
-                if (!exists) {
-                    // Resource does not exist, redirect to app store link based on device
-                    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                        // The user is using iOS (iPhone, iPad, iPod)
-                        window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
-                    } else if (/Android/.test(userAgent)) {
-                        // The user is using Android
-                        window.location.href = 'https://play.google.com/store/apps/details?id=com.experts.german_e&hl=en&gl=US&pli=1';
-                    } else {
-                        // Redirect to the default app store link
-                        window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
-                    }
+            // Check if the incoming link is other than https://jyothishkoladath.github.io
+            if (window.location.href !== 'https://jyothishkoladath.github.io') {
+                // Redirect to the default app store link
+                if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // The user is using iOS (iPhone, iPad, iPod)
+                    window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
+                } else if (/Android/.test(userAgent)) {
+                    // The user is using Android
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.experts.german_e&hl=en&gl=US&pli=1';
+                } else {
+                    // Redirect to the default app store link
+                    window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
                 }
-            });
+            } else {
+                // Check if the specified URL exists
+                checkResourceExists(urlToCheck, function (exists) {
+                    if (!exists) {
+                        // Resource does not exist, redirect based on device
+                        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                            // The user is using iOS (iPhone, iPad, iPod)
+                            window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
+                        } else if (/Android/.test(userAgent)) {
+                            // The user is using Android
+                            window.location.href = 'https://play.google.com/store/apps/details?id=com.experts.german_e&hl=en&gl=US&pli=1';
+                        } else {
+                            // Redirect to the default app store link
+                            window.location.href = 'https://apps.apple.com/ae/app/german-experts/id1620328363';
+                        }
+                    }
+                });
+            }
         };
     </script>
 </head>
